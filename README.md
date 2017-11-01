@@ -7,3 +7,4 @@ React app for gifz project
 
 * fetching with pagination (lazy loading)
 * masonry grid
+* travis.yml
