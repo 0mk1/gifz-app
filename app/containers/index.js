@@ -1,1 +1,1 @@
-export { default as GifsContainer } from './GifsContainer';
+export { default as GifsList } from './GifsList';
