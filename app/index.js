@@ -1,7 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from 'react-router-dom';
 import { Provider } from 'react-redux';
-import Reboot from 'material-ui/Reboot';
+import CssBaseline from 'material-ui/CssBaseline';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import { blue } from 'material-ui/colors';
 
@@ -15,11 +20,11 @@ const theme = createMuiTheme({
 });
 
 import {
-  AppBar,
-} from './components';
-
-import {
   GifsList,
+  GifsAdd,
+  AuthLogin,
+  AuthLogout,
+  AppBarContainer,
 } from './containers';
 
 import './styles/base.css';
@@ -28,15 +33,21 @@ import './styles/base.css';
 const store = configureStore();
 configureRequests();
 
-
 const App = () => (
   <Provider store={store}>
     <MuiThemeProvider theme={theme}>
-      <div className="app-container">
-        <Reboot />
-        <AppBar />
-        <GifsList />
-      </div>
+      <Router>
+        <div className="app-container">
+          <CssBaseline />
+          <AppBarContainer />
+          <Switch>
+            <Route exact path="/" component={GifsList} />
+            <Route exact path="/add" component={GifsAdd} />
+            <Route exact path="/login" component={AuthLogin} />
+            <Route exact path="/logout" component={AuthLogout} />
+          </Switch>
+        </div>
+      </Router>
     </MuiThemeProvider>
   </Provider>
 );

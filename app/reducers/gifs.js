@@ -11,9 +11,14 @@ import {
 import {
   GIFS_FETCH_BEGINS,
   GIFS_FETCH_FINISHED,
+  GIFS_CLEAR,
+  GIFS_ADD_SUCCESS,
+  GIFS_ADD_FAILURE,
+  GIFS_ADD_PENDING,
 } from '../constants/gifsActionTypes';
 
 const initialState = Map({
+  isGifsAddPending: true,
   isGifsFetching: true,
   gifs: Map({
     results: List(),
@@ -24,6 +29,20 @@ const initialState = Map({
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case GIFS_CLEAR: {
+      return state.set('gifs', initialState.get('gifs'));
+    }
+    case GIFS_ADD_PENDING: {
+      return state.set('isGifsAddPending', true);
+    }
+    case GIFS_ADD_SUCCESS: {
+      console.log(action.data);
+      return state.set('isGifsAddPending', false);
+    }
+    case GIFS_ADD_FAILURE: {
+      console.log(action.data);
+      return state.set('isGifsAddPending', false);
+    }
     case GIFS_FETCH_BEGINS: {
       return state.set('isGifsFetching', true);
     }
