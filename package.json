@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --config webpack.config.dev.js",
-    "prod": "webpack --config webpack.config.prod.js --p --progress"
+    "build": "webpack --config webpack.config.prod.js --p --progress"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -13,10 +13,12 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.7",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.30.1",
     "style-loader": "^0.18.2",
+    "uglifyjs-webpack-plugin": "^1.2.4",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.8.2"
   },
