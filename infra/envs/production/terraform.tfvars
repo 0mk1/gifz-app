@@ -1,4 +1,4 @@
 region = "us-east-1"
+environment = "production"
 domain = "gifz.mkamycki.com"
-cloudflare_email = "mateusz.kamycki@gmail.com"
 cloudflare_domain = "mkamycki.com"

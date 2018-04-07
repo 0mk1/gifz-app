@@ -9,11 +9,12 @@ terraform {
   }
 }
 
-variable domain {}
-variable region {}
-variable cloudflare_email {}
-variable cloudflare_domain {}
-variable cloudflare_token {}
+variable "environment" {}
+variable "domain" {}
+variable "region" {}
+variable "cloudflare_email" {}
+variable "cloudflare_domain" {}
+variable "cloudflare_token" {}
 
 provider "cloudflare" {
   email = "${var.cloudflare_email}"
@@ -24,14 +25,11 @@ provider "aws" {
   region = "${var.region}"
 }
 
-module "gifz-app" {
+module "frontend" {
   source = "../../modules/frontend"
 
   region = "${var.region}"
   domain = "${var.domain}"
+  environment = "${var.environment}"
   cloudflare_domain = "${var.cloudflare_domain}"
-}
-
-output "cloudfront_domain_name" {
-  value = "${module.gifz-app.cloudfront_domain_name}"
 }

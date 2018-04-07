@@ -10,6 +10,11 @@ resource "aws_s3_bucket" "default" {
     index_document = "index.html"
     error_document = "index.html"
   }
+
+  tags {
+    Name = "${var.domain}"
+    Environment = "${var.environment}"
+  }
 }
 
 resource "aws_s3_bucket_policy" "default" {
@@ -41,6 +46,11 @@ data "aws_iam_policy_document" "default" {
 resource "aws_s3_bucket" "logs" {
   bucket = "${var.domain}-logs"
   acl    = "log-delivery-write"
+
+  tags {
+    Name = "${var.domain}-logs"
+    Environment = "${var.environment}"
+  }
 }
 
 resource "aws_cloudfront_origin_access_identity" "default" {}
@@ -49,6 +59,11 @@ resource "aws_cloudfront_origin_access_identity" "default" {}
 resource "aws_acm_certificate" "default" {
   domain_name = "${var.domain}"
   validation_method = "EMAIL"
+
+  tags {
+    Name = "${var.domain}"
+    Environment = "${var.environment}"
+  }
 }
 
 resource "aws_cloudfront_distribution" "default" {
@@ -118,6 +133,11 @@ resource "aws_cloudfront_distribution" "default" {
     cloudfront_default_certificate = false
     acm_certificate_arn = "${aws_acm_certificate.default.arn}"
     ssl_support_method = "sni-only"
+  }
+
+  tags {
+    Name = "${var.domain}"
+    Environment = "${var.environment}"
   }
 }
 
