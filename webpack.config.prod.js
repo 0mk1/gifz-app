@@ -1,7 +1,3 @@
-/*
-    Removed Uglify plugin as it is not working properly with the newer version of babel
-    We can use https://www.npmjs.com/package/uglify-js-harmony isntead
-*/
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
