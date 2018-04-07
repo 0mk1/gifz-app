@@ -13,7 +13,7 @@ runserver:
 	$(COMPOSE_CMD) up
 
 build-infra-production:
-	./bin/build_infra production
+	./bin/build-infra production
 
 deploy-production:
 	./bin/deploy production gifz.mkamycki.com
