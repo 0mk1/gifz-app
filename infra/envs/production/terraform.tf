@@ -27,7 +27,6 @@ provider "aws" {
 
 module "frontend" {
   source = "../../modules/frontend"
-
   region = "${var.region}"
   domain = "${var.domain}"
   environment = "${var.environment}"

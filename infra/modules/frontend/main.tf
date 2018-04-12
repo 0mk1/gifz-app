@@ -101,7 +101,7 @@ resource "aws_cloudfront_distribution" "default" {
       }
     }
 
-    viewer_protocol_policy = "redirect-to-https"
+    viewer_protocol_policy = "allow-all"
     min_ttl = 0
     default_ttl = 3600
     max_ttl = 86400
@@ -130,10 +130,13 @@ resource "aws_cloudfront_distribution" "default" {
   }
 
   viewer_certificate {
-    cloudfront_default_certificate = false
-    acm_certificate_arn = "${aws_acm_certificate.default.arn}"
-    ssl_support_method = "sni-only"
+    cloudfront_default_certificate = true
   }
+  /* viewer_certificate { */
+  /*   cloudfront_default_certificate = false */
+  /*   acm_certificate_arn = "${aws_acm_certificate.default.arn}" */
+  /*   ssl_support_method = "sni-only" */
+  /* } */
 
   tags {
     Name = "${var.domain}"
@@ -141,10 +144,10 @@ resource "aws_cloudfront_distribution" "default" {
   }
 }
 
-resource "cloudflare_record" "default" {
-  domain = "${var.cloudflare_domain}"
-  name   = "${var.domain}"
-  value  = "${aws_cloudfront_distribution.default.domain_name}"
-  type   = "CNAME"
-  proxied = false
-}
+/* resource "cloudflare_record" "default" { */
+/*   domain = "${var.cloudflare_domain}" */
+/*   name   = "${var.domain}" */
+/*   value  = "${aws_cloudfront_distribution.default.domain_name}" */
+/*   type   = "CNAME" */
+/*   proxied = false */
+/* } */
